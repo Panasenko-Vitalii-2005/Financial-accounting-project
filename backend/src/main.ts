@@ -22,7 +22,8 @@ async function bootstrap() {
         !origin ||
         allowed.includes(origin) ||
         origin.endsWith(".lhr.life") ||
-        origin.endsWith(".trycloudflare.com")
+        origin.endsWith(".trycloudflare.com") ||
+        origin.endsWith(".pages.dev")
       ) {
         callback(null, true);
       } else {
