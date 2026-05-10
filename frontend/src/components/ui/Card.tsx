@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { clsx } from 'clsx';
+import React, { ReactNode } from "react";
+import { clsx } from "clsx";
 
 interface CardProps {
   children: ReactNode;
@@ -7,5 +7,13 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({ children, className }) => (
-  <div className={clsx('rounded-lg border bg-card p-6 shadow-sm', className)}>{children}</div>
+  <div
+    className={clsx(
+      "relative bg-card p-6 border border-border cp-border glow-card",
+      "before:pointer-events-none after:pointer-events-none",
+      className,
+    )}
+  >
+    {children}
+  </div>
 );

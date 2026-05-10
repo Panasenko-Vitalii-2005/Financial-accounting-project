@@ -21,34 +21,34 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
 }) => {
   if (transactions.length === 0) {
     return (
-      <div className="rounded-lg border bg-card p-12 text-center text-muted-foreground">
+      <div className="border border-border bg-card p-12 text-center text-muted-foreground font-mono uppercase tracking-widest">
         Транзакцій не знайдено
       </div>
     );
   }
 
   return (
-    <div className="overflow-hidden rounded-lg border bg-card">
+    <div className="overflow-hidden border border-border bg-card">
       <table className="w-full text-sm">
-        <thead className="border-b bg-muted/50">
+        <thead className="border-b border-border bg-muted/50">
           <tr>
-            <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+            <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Дата
             </th>
-            <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+            <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Категорія
             </th>
-            <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+            <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Тип
             </th>
-            <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+            <th className="px-4 py-3 text-right text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Сума
             </th>
-            <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+            <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-widest text-muted-foreground">
               Коментар
             </th>
             {showActions && (
-              <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+              <th className="px-4 py-3 text-right text-xs font-bold uppercase tracking-widest text-muted-foreground">
                 Дії
               </th>
             )}
@@ -56,7 +56,10 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
         </thead>
         <tbody className="divide-y">
           {transactions.map((t) => (
-            <tr key={t.id} className="hover:bg-muted/30 transition-colors">
+            <tr
+              key={t.id}
+              className="hover:bg-neon-cyan/10 border-b border-border/50 transition-all duration-200 cyber-hover"
+            >
               <td className="px-4 py-3 text-muted-foreground">
                 {formatDate(t.date)}
               </td>
@@ -64,10 +67,10 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
               <td className="px-4 py-3">
                 <span
                   className={clsx(
-                    "inline-flex rounded-full px-2 py-0.5 text-xs font-medium",
+                    "inline-flex px-2 py-0.5 text-xs font-bold uppercase tracking-widest border",
                     t.category.type === "INCOME"
-                      ? "bg-green-100 text-green-800"
-                      : "bg-red-100 text-red-800",
+                      ? "badge-income text-neon-cyan"
+                      : "badge-expense text-neon-pink",
                   )}
                 >
                   {t.category.type === "INCOME" ? "Дохід" : "Витрата"}
@@ -75,10 +78,10 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({
               </td>
               <td
                 className={clsx(
-                  "px-4 py-3 text-right font-medium",
+                  "px-4 py-3 text-right font-bold font-mono",
                   t.category.type === "INCOME"
-                    ? "text-green-600"
-                    : "text-red-600",
+                    ? "text-neon-cyan"
+                    : "text-neon-pink",
                 )}
               >
                 {t.category.type === "INCOME" ? "+" : "-"}

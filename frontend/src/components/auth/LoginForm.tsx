@@ -1,32 +1,32 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { authService } from '../../services/auth.service';
-import { useAuth } from '../../context/AuthContext';
-import { Input } from '../ui/Input';
-import { Button } from '../ui/Button';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { authService } from "../../services/auth.service";
+import { useAuth } from "../../context/AuthContext";
+import { Input } from "../ui/Input";
+import { Button } from "../ui/Button";
 
 export const LoginForm: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [emailOrUsername, setEmailOrUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [emailOrUsername, setEmailOrUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
     if (!emailOrUsername || !password) {
-      setError('Заповніть всі поля');
+      setError("Заповніть всі поля");
       return;
     }
     setIsLoading(true);
     try {
       const data = await authService.login(emailOrUsername, password);
       login(data.access_token, data.user);
-      navigate('/');
+      navigate("/");
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Невірні дані для входу');
+      setError(err.response?.data?.message || "Невірні дані для входу");
     } finally {
       setIsLoading(false);
     }
@@ -50,13 +50,16 @@ export const LoginForm: React.FC = () => {
         placeholder="••••••"
         autoComplete="current-password"
       />
-      {error && <p className="text-sm text-red-500">{error}</p>}
+      {error && <p className="text-sm text-neon-pink tracking-wide">{error}</p>}
       <Button type="submit" className="w-full" isLoading={isLoading}>
         Увійти
       </Button>
-      <p className="text-center text-sm text-muted-foreground">
-        Немає акаунту?{' '}
-        <Link to="/register" className="text-primary hover:underline">
+      <p className="text-center text-sm font-mono text-muted-foreground">
+        Немає акаунту?{" "}
+        <Link
+          to="/register"
+          className="text-neon-cyan hover:text-glow-cyan hover:underline"
+        >
           Зареєструватися
         </Link>
       </p>

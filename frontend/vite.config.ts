@@ -11,12 +11,12 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
-    port: 5173,
-    strictPort: true,
+    port: 5180,
+    strictPort: false,
     allowedHosts: [".trycloudflare.com", ".lhr.life"],
     proxy: {
       "/api": {
-        target: "http://localhost:3005",
+        target: "http://localhost:3006",
         changeOrigin: true,
       },
     },

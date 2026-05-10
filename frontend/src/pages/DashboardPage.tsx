@@ -65,9 +65,11 @@ export const DashboardPage: React.FC = () => {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold">Дашборд</h1>
-            <p className="text-sm text-muted-foreground">
-              Баланс за поточний місяць
+            <h1 className="text-2xl font-black uppercase tracking-widest text-neon-yellow text-glow-yellow">
+              Дашборд
+            </h1>
+            <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
+              // Баланс за поточний місяць
             </p>
           </div>
           <Button onClick={() => setIsModalOpen(true)}>
@@ -78,8 +80,10 @@ export const DashboardPage: React.FC = () => {
 
         {balance && <BalanceCard report={balance} />}
 
-        <Card>
-          <h2 className="mb-4 text-lg font-semibold">Останні транзакції</h2>
+        <Card className="cyber-hover">
+          <h2 className="mb-4 text-sm font-bold uppercase tracking-widest text-neon-cyan">
+            Останні транзакції
+          </h2>
           <TransactionTable transactions={transactions} showActions={false} />
         </Card>
 

@@ -1,49 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
-  }
+    /* Cyberpunk 2077 palette */
+    --background: 240 25% 4%;
+    --foreground: 60 5% 92%;
+    --card: 240 20% 7%;
+    --card-foreground: 60 5% 92%;
+    --popover: 240 20% 7%;
+    --popover-foreground: 60 5% 92%;
+    --primary: 51 100% 50%;
+    --primary-foreground: 240 25% 4%;
+    --secondary: 240 15% 12%;
+    --secondary-foreground: 185 100% 70%;
+    --muted: 240 15% 10%;
+    --muted-foreground: 210 15% 50%;
+    --accent: 185 100% 50%;
+    --accent-foreground: 240 25% 4%;
+    --destructive: 345 100% 55%;
+    --destructive-foreground: 240 25% 4%;
+    --border: 185 60% 20%;
+    --input: 240 15% 10%;
+    --ring: 51 100% 50%;
+    --radius: 0rem;
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --ring: 224.3 76.3% 48%;
+    /* Neon glow colors */
+    --neon-yellow: #ffe600;
+    --neon-cyan: #00e5ff;
+    --neon-pink: #ff2d78;
+    --neon-purple: #b700ff;
   }
 }
 
@@ -51,7 +40,196 @@
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: "Rajdhani", "Share Tech Mono", ui-monospace, monospace;
+    background-image:
+      linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Rajdhani", monospace;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+}
+
+@layer components {
+  /* Neon glow utilities */
+  .glow-yellow {
+    box-shadow:
+      0 0 8px var(--neon-yellow),
+      0 0 20px rgba(255, 230, 0, 0.3);
+  }
+  .glow-cyan {
+    box-shadow:
+      0 0 8px var(--neon-cyan),
+      0 0 20px rgba(0, 229, 255, 0.3);
+  }
+  .glow-pink {
+    box-shadow:
+      0 0 8px var(--neon-pink),
+      0 0 20px rgba(255, 45, 120, 0.3);
+  }
+  .text-glow-yellow {
+    text-shadow:
+      0 0 8px var(--neon-yellow),
+      0 0 20px rgba(255, 230, 0, 0.5);
+  }
+  .text-glow-cyan {
+    text-shadow:
+      0 0 8px var(--neon-cyan),
+      0 0 20px rgba(0, 229, 255, 0.5);
+  }
+  .text-glow-pink {
+    text-shadow:
+      0 0 8px var(--neon-pink),
+      0 0 20px rgba(255, 45, 120, 0.5);
+  }
+
+  /* Cyberpunk clip-path corner cut */
+  .clip-corner-tr {
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  }
+  .clip-corner-tl {
+    clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%, 0 12px);
+  }
+  .clip-corner-both {
+    clip-path: polygon(
+      12px 0,
+      calc(100% - 12px) 0,
+      100% 12px,
+      100% 100%,
+      calc(100% - 12px) 100%,
+      12px 100%,
+      0 calc(100% - 12px),
+      0 0
+    );
+  }
+
+  /* Scanline overlay on cards */
+  .scanlines::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 229, 255, 0.015) 2px,
+      rgba(0, 229, 255, 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Cyberpunk border with corner decoration */
+  .cp-border {
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    position: relative;
+  }
+  .cp-border::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 16px;
+    height: 16px;
+    border-top: 2px solid var(--neon-yellow);
+    border-left: 2px solid var(--neon-yellow);
+  }
+  .cp-border::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 16px;
+    height: 16px;
+    border-bottom: 2px solid var(--neon-yellow);
+    border-right: 2px solid var(--neon-yellow);
+  }
+
+  /* Enhanced glow utilities for cards */
+  .glow-card {
+    box-shadow:
+      0 0 12px rgba(0, 229, 255, 0.2),
+      0 0 24px rgba(0, 229, 255, 0.1),
+      inset 0 0 20px rgba(0, 229, 255, 0.05);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .glow-card:hover {
+    box-shadow:
+      0 0 16px rgba(0, 229, 255, 0.4),
+      0 0 32px rgba(0, 229, 255, 0.2),
+      inset 0 0 24px rgba(0, 229, 255, 0.1);
+    transform: translateY(-2px);
+    border-color: rgba(0, 229, 255, 0.6);
+  }
+
+  /* Bright glow for buttons and highlights */
+  .glow-bright-yellow {
+    box-shadow:
+      0 0 10px var(--neon-yellow),
+      0 0 24px rgba(255, 230, 0, 0.4);
+  }
+
+  .glow-bright-cyan {
+    box-shadow:
+      0 0 10px var(--neon-cyan),
+      0 0 24px rgba(0, 229, 255, 0.4);
+  }
+
+  .glow-bright-pink {
+    box-shadow:
+      0 0 10px var(--neon-pink),
+      0 0 24px rgba(255, 45, 120, 0.4);
+  }
+
+  /* Hover animation for interactive elements */
+  .cyber-hover {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .cyber-hover:hover {
+    transform: translateY(-3px) scale(1.02);
+  }
+
+  /* Badge styles for transaction types */
+  .badge-income {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 229, 255, 0.15) 0%,
+      rgba(0, 229, 255, 0.05) 100%
+    );
+    border: 1.5px solid rgba(0, 229, 255, 0.6);
+    box-shadow:
+      inset 0 0 12px rgba(0, 229, 255, 0.1),
+      0 0 12px rgba(0, 229, 255, 0.2);
+  }
+
+  .badge-expense {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 45, 120, 0.15) 0%,
+      rgba(255, 45, 120, 0.05) 100%
+    );
+    border: 1.5px solid rgba(255, 45, 120, 0.6);
+    box-shadow:
+      inset 0 0 12px rgba(255, 45, 120, 0.1),
+      0 0 12px rgba(255, 45, 120, 0.2);
   }
 }

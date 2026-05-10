@@ -30,36 +30,44 @@ export const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <div className="flex h-screen bg-background">
-      <aside className="w-64 flex-shrink-0 border-r bg-card">
-        <div className="flex h-16 items-center gap-2 border-b px-6">
-          <Wallet className="h-6 w-6 text-primary" />
-          <span className="text-lg font-bold">Мій бюджет</span>
+      <aside className="w-64 flex-shrink-0 border-r border-border bg-card flex flex-col">
+        <div className="flex h-16 items-center gap-3 border-b border-border px-6 relative">
+          <div className="relative">
+            <Wallet className="h-6 w-6 text-neon-yellow drop-shadow-[0_0_6px_#ffe600]" />
+          </div>
+          <span className="text-lg font-bold uppercase tracking-widest text-neon-yellow text-glow-yellow">
+            Мій бюджет
+          </span>
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-neon-yellow via-neon-cyan to-transparent opacity-60" />
         </div>
-        <nav className="flex flex-col gap-1 p-4">
+        <nav className="flex flex-col gap-1 p-4 flex-1">
           {navLinks.map(({ to, label, icon: Icon }) => (
             <Link
               key={to}
               to={to}
               className={clsx(
-                "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                "flex items-center gap-3 px-3 py-2 text-sm font-bold uppercase tracking-widest transition-all duration-200 cyber-hover border-2",
                 location.pathname === to
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                  ? "text-background bg-neon-yellow border-neon-yellow shadow-neon-sm-yellow hover:shadow-neon-yellow"
+                  : "text-neon-cyan bg-transparent border-neon-cyan/40 shadow-neon-sm-cyan hover:text-neon-yellow hover:bg-neon-yellow/5 hover:border-neon-yellow hover:shadow-neon-sm-yellow",
               )}
             >
-              <Icon className="h-4 w-4" />
+              <Icon className="h-4 w-4 shrink-0" />
               {label}
             </Link>
           ))}
         </nav>
-        <div className="absolute bottom-0 w-64 border-t p-4">
-          <div className="mb-2 text-sm font-medium">{user?.username}</div>
-          <div className="mb-3 text-xs text-muted-foreground truncate">
+        <div className="border-t border-border p-4 relative">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-cyan to-transparent opacity-40" />
+          <div className="mb-1 text-sm font-bold uppercase tracking-widest text-foreground">
+            {user?.username}
+          </div>
+          <div className="mb-3 text-xs text-muted-foreground font-mono truncate">
             {user?.email}
           </div>
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-destructive transition-colors"
+            className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-neon-cyan border border-neon-cyan/40 rounded px-2 py-1 hover:text-neon-pink hover:border-neon-pink/60 hover:shadow-neon-sm-pink transition-all"
           >
             <LogOut className="h-4 w-4" />
             Вийти

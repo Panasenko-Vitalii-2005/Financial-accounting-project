@@ -1,35 +1,41 @@
-import React from 'react';
-import { clsx } from 'clsx';
+import React from "react";
+import { clsx } from "clsx";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'destructive' | 'ghost' | 'outline';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "primary" | "secondary" | "destructive" | "ghost" | "outline";
+  size?: "sm" | "md" | "lg";
   isLoading?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
   children,
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   isLoading,
   className,
   disabled,
   ...props
 }) => {
-  const base = 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50';
+  const base =
+    "inline-flex items-center justify-center font-bold tracking-widest uppercase transition-all duration-200 focus:outline-none disabled:pointer-events-none disabled:opacity-40 clip-corner-tr relative overflow-hidden cyber-hover";
 
   const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700',
-    secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-    destructive: 'bg-red-500 text-white hover:bg-red-600',
-    ghost: 'hover:bg-accent hover:text-accent-foreground',
-    outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+    primary:
+      "bg-neon-yellow text-background hover:bg-yellow-300 border-2 border-neon-yellow hover:border-yellow-300 shadow-neon-yellow hover:shadow-neon-yellow",
+    secondary:
+      "bg-neon-cyan/20 text-neon-cyan border-2 border-neon-cyan shadow-neon-sm-cyan hover:bg-neon-cyan/30 hover:border-neon-cyan hover:shadow-neon-cyan",
+    destructive:
+      "bg-neon-pink/20 text-neon-pink border-2 border-neon-pink shadow-neon-sm-pink hover:bg-neon-pink/30 hover:border-neon-pink hover:shadow-neon-pink",
+    ghost:
+      "bg-transparent text-neon-cyan border-2 border-neon-cyan/60 shadow-neon-sm-cyan hover:text-neon-yellow hover:bg-neon-yellow/10 hover:border-neon-yellow hover:shadow-neon-yellow",
+    outline:
+      "bg-transparent text-neon-cyan border-2 border-neon-cyan shadow-neon-sm-cyan hover:bg-neon-cyan/15 hover:text-neon-yellow hover:border-neon-yellow hover:shadow-neon-yellow",
   };
 
   const sizes = {
-    sm: 'h-8 px-3 text-xs',
-    md: 'h-10 px-4 py-2 text-sm',
-    lg: 'h-11 px-8 text-base',
+    sm: "h-8 px-3 text-xs",
+    md: "h-10 px-4 py-2 text-sm",
+    lg: "h-11 px-8 text-base",
   };
 
   return (
@@ -39,7 +45,7 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
     >
       {isLoading ? (
-        <span className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+        <span className="mr-2 h-4 w-4 animate-spin border-2 border-current border-t-transparent" />
       ) : null}
       {children}
     </button>

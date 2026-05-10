@@ -1,7 +1,7 @@
-import React from 'react';
-import { Category } from '../../types/category';
-import { Button } from '../ui/Button';
-import { Pencil, Trash2 } from 'lucide-react';
+import React from "react";
+import { Category } from "../../types/category";
+import { Button } from "../ui/Button";
+import { Pencil, Trash2 } from "lucide-react";
 
 interface CategoryListProps {
   categories: Category[];
@@ -9,18 +9,26 @@ interface CategoryListProps {
   onDelete: (c: Category) => void;
 }
 
-export const CategoryList: React.FC<CategoryListProps> = ({ categories, onEdit, onDelete }) => {
-  const income = categories.filter((c) => c.type === 'INCOME');
-  const expense = categories.filter((c) => c.type === 'EXPENSE');
+export const CategoryList: React.FC<CategoryListProps> = ({
+  categories,
+  onEdit,
+  onDelete,
+}) => {
+  const income = categories.filter((c) => c.type === "INCOME");
+  const expense = categories.filter((c) => c.type === "EXPENSE");
 
   const renderGroup = (title: string, items: Category[], color: string) => (
     <div>
-      <h3 className={`mb-3 text-sm font-semibold uppercase tracking-wide ${color}`}>{title}</h3>
+      <h3
+        className={`mb-3 text-xs font-bold uppercase tracking-widest ${color}`}
+      >
+        {title}
+      </h3>
       <div className="space-y-2">
         {items.map((c) => (
           <div
             key={c.id}
-            className="flex items-center justify-between rounded-md border bg-card px-4 py-3"
+            className="flex items-center justify-between border border-border bg-card px-4 py-3 hover:border-neon-yellow/60 hover:bg-neon-yellow/5 hover:glow-bright-yellow transition-all duration-200 cyber-hover"
           >
             <span className="font-medium">{c.name}</span>
             <div className="flex gap-2">
@@ -42,8 +50,8 @@ export const CategoryList: React.FC<CategoryListProps> = ({ categories, onEdit, 
 
   return (
     <div className="grid gap-6 md:grid-cols-2">
-      {renderGroup('Доходи', income, 'text-green-600')}
-      {renderGroup('Витрати', expense, 'text-red-600')}
+      {renderGroup("Доходи", income, "text-neon-cyan")}
+      {renderGroup("Витрати", expense, "text-neon-pink")}
     </div>
   );
 };
