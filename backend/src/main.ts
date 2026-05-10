@@ -8,6 +8,11 @@ async function bootstrap() {
 
   app.setGlobalPrefix("api");
 
+  const envOrigins = (process.env.CORS_ORIGINS || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
   app.enableCors({
     origin: (origin, callback) => {
       const allowed = [
@@ -17,6 +22,7 @@ async function bootstrap() {
         "http://localhost:5180",
         "http://localhost:5181",
         "http://localhost:3001",
+        ...envOrigins,
       ];
       if (
         !origin ||
